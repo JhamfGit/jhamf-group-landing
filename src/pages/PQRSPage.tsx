@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, Upload, Send, FileText } from 'lucide-react';
+import { CheckCircle, Upload, Send, FileText, AlertCircle } from 'lucide-react';
 import Navbar from '../components/layout/Navbar';
+import emailjs from '@emailjs/browser';
+
+// ⚠️ REEMPLAZA ESTOS VALORES CON LOS TUYOS DE EMAILJS
+const EMAILJS_SERVICE_ID = 'service_tuxji4s';      // Ej: 'service_xyz123'
+const EMAILJS_TEMPLATE_ID = 'template_t56ifou';    // Ej: 'template_abc123'
+const EMAILJS_PUBLIC_KEY = 'm-Iue2hNH0SNnZdmt';      // Ej: 'abc123XYZ'
 
 const PQRSPage = () => {
     const [formData, setFormData] = useState({
@@ -18,6 +24,7 @@ const PQRSPage = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
     const [referenceNumber, setReferenceNumber] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -32,17 +39,76 @@ const PQRSPage = () => {
         return `PQRS-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}-${new Date().getFullYear()}`;
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    // Mapeo de tipos de solicitud para el email
+    const getTipoSolicitudLabel = (type: string) => {
+        const tipos: Record<string, string> = {
+            'peticion': 'Petición',
+            'queja': 'Queja',
+            'reclamo': 'Reclamo',
+            'sugerencia': 'Sugerencia'
+        };
+        return tipos[type] || type;
+    };
+
+    // Mapeo de servicios para el email
+    const getServicioLabel = (service: string) => {
+        const servicios: Record<string, string> = {
+            'consultoria': 'Consultoría IT',
+            'ciberseguridad': 'Ciberseguridad',
+            'cloud': 'Cloud Computing',
+            'infraestructura': 'Infraestructura',
+            'otro': 'Otro'
+        };
+        return servicios[service] || service;
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setErrorMessage('');
 
-        // Simulate API call
-        setTimeout(() => {
-            setIsSubmitting(false);
-            setReferenceNumber(generateReference());
+        const reference = generateReference();
+
+        try {
+            // Preparar los datos para EmailJS
+            const templateParams = {
+                fullName: formData.fullName,
+                companyName: formData.companyName,
+                email: formData.email,
+                phone: formData.phone || 'No proporcionado',
+                type: getTipoSolicitudLabel(formData.type),
+                service: getServicioLabel(formData.service),
+                description: formData.description,
+                referenceNumber: reference,
+                fecha: new Date().toLocaleString('es-CO', { 
+                    timeZone: 'America/Bogota',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                })
+            };
+
+            // Enviar email con EmailJS
+            await emailjs.send(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_TEMPLATE_ID,
+                templateParams,
+                EMAILJS_PUBLIC_KEY
+            );
+
+            setReferenceNumber(reference);
             setSubmitStatus('success');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 1500);
+
+        } catch (error) {
+            console.error('Error al enviar PQRS:', error);
+            setSubmitStatus('error');
+            setErrorMessage('Error al enviar la solicitud. Por favor verifica tu conexión e intenta nuevamente.');
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -85,7 +151,7 @@ const PQRSPage = () => {
                             <h2 className="text-2xl font-bold text-white mb-4">¡Solicitud Radicada con Éxito!</h2>
                             <p className="text-gray-300 mb-6">
                                 Hemos recibido su solicitud correctamente. Se ha enviado un correo de confirmación a
-                                <span className="text-neon-cyan font-medium"> {formData.email}</span>.
+                                <span className="text-neon-cyan font-medium"> coordinacionsgt@jhamf.com</span>.
                             </p>
                             <div className="bg-black/40 rounded-lg p-4 inline-block mb-8 border border-white/10">
                                 <p className="text-sm text-gray-400 mb-1">Número de Radicado</p>
@@ -111,6 +177,27 @@ const PQRSPage = () => {
                                     Nueva Solicitud
                                 </button>
                             </div>
+                        </motion.div>
+                    ) : submitStatus === 'error' ? (
+                        <motion.div
+                            key="error"
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="bg-white/5 border border-red-500/30 rounded-2xl p-8 text-center"
+                        >
+                            <div className="w-20 h-20 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <AlertCircle className="text-red-500 w-10 h-10" />
+                            </div>
+                            <h2 className="text-2xl font-bold text-white mb-4">Error al Enviar</h2>
+                            <p className="text-gray-300 mb-6">
+                                {errorMessage || 'Hubo un problema al enviar su solicitud. Por favor intente nuevamente.'}
+                            </p>
+                            <button
+                                onClick={() => setSubmitStatus('idle')}
+                                className="px-8 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors font-medium"
+                            >
+                                Intentar Nuevamente
+                            </button>
                         </motion.div>
                     ) : (
                         <motion.form
