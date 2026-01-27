@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface NavbarProps {
     onOpenWizard: () => void;
@@ -10,6 +10,8 @@ interface NavbarProps {
 const Navbar = ({ onOpenWizard }: NavbarProps) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -20,11 +22,32 @@ const Navbar = ({ onOpenWizard }: NavbarProps) => {
     }, []);
 
     const navLinks = [
-        { name: 'Evolución', href: '#evolution' },
-        { name: 'Servicios', href: '#services' },
-        { name: 'Nosotros', href: '#nosotros' },
-        { name: 'Contacto', href: '#contact' },
+        { name: 'Evolución', href: '/#evolution' },
+        { name: 'Servicios', href: '/#services' },
+        { name: 'Nosotros', href: '/#nosotros' },
+        { name: 'Contacto', href: '/#contact' },
+        { name: 'PQRS', href: '/pqrs' },
     ];
+
+    const handleNavigation = (href: string) => {
+        setIsMobileMenuOpen(false);
+        if (href.startsWith('/#')) {
+            const hash = href.substring(2);
+            if (location.pathname !== '/') {
+                navigate('/');
+                setTimeout(() => {
+                    const element = document.getElementById(hash);
+                    if (element) element.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            } else {
+                const element = document.getElementById(hash);
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            navigate(href);
+            window.scrollTo(0, 0);
+        }
+    };
 
     return (
         <nav
@@ -37,20 +60,21 @@ const Navbar = ({ onOpenWizard }: NavbarProps) => {
                         <img
                             src="/jhamf-logo-white.png"
                             alt="Jhamf Group Logo"
-                            className="h-12 w-auto object-contain"
+                            className="h-12 w-auto object-contain cursor-pointer"
+                            onClick={() => handleNavigation('/')}
                         />
                     </div>
 
                     {/* Desktop Nav */}
                     <div className="hidden md:flex items-center gap-8">
                         {navLinks.map((link) => (
-                            <a
+                            <button
                                 key={link.name}
-                                href={link.href}
-                                className="text-gray-300 hover:text-neon-cyan transition-colors text-sm font-medium tracking-wide"
+                                onClick={() => handleNavigation(link.href)}
+                                className="text-gray-300 hover:text-neon-cyan transition-colors text-sm font-medium tracking-wide bg-transparent border-none cursor-pointer"
                             >
                                 {link.name}
-                            </a>
+                            </button>
                         ))}
                         <button
                             onClick={onOpenWizard}
@@ -80,14 +104,13 @@ const Navbar = ({ onOpenWizard }: NavbarProps) => {
                         className="md:hidden absolute top-20 left-0 w-full bg-obsidian/95 backdrop-blur-xl border-b border-white/10 p-4 flex flex-col gap-4"
                     >
                         {navLinks.map((link) => (
-                            <a
+                            <button
                                 key={link.name}
-                                href={link.href}
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="text-gray-300 hover:text-neon-cyan block py-2 text-base font-medium"
+                                onClick={() => handleNavigation(link.href)}
+                                className="text-gray-300 hover:text-neon-cyan block py-2 text-base font-medium bg-transparent border-none text-left w-full cursor-pointer"
                             >
                                 {link.name}
-                            </a>
+                            </button>
                         ))}
                         <button
                             onClick={() => {
