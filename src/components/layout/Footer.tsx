@@ -4,26 +4,26 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
         <footer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-4 gap-12 border-t border-white/10 pt-16 mb-12">
+            <div className="grid md:grid-cols-4 gap-8 md:gap-12 border-t border-white/10 pt-16 mb-12">
 
                 {/* Brand */}
-                <div className="col-span-1 md:col-span-2">
+                <div className="col-span-1">
                     <div className="flex items-center gap-2 mb-6">
                         <img
                             src="/jhamf-logo-white.png"
                             alt="Jhamf Group Logo"
-                            className="h-16 w-auto object-contain"
+                            className="h-14 w-auto object-contain"
                         />
                     </div>
-                    <p className="text-gray-400 max-w-sm">
-                        Expertos en Cloud Infrastructure y Process Automation. Ayudamos a empresas visionarias a construir el futuro de su operación.
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                        Expertos en Cloud Infrastructure y Process Automation.
                     </p>
                 </div>
 
                 {/* Links 1 */}
                 <div>
                     <h4 className="text-white font-bold mb-6">Soluciones</h4>
-                    <ul className="space-y-4 text-gray-400">
+                    <ul className="space-y-3 text-sm text-gray-400">
                         <li><a href="#" className="hover:text-neon-cyan transition-colors">Cloud Architecture</a></li>
                         <li><a href="#" className="hover:text-neon-cyan transition-colors">Intelligent Automation</a></li>
                         <li><a href="#" className="hover:text-neon-cyan transition-colors">AI Solutions</a></li>
@@ -33,10 +33,18 @@ const Footer = () => {
                 {/* Links 2 */}
                 <div>
                     <h4 className="text-white font-bold mb-6">Empresa</h4>
-                    <ul className="space-y-4 text-gray-400">
+                    <ul className="space-y-3 text-sm text-gray-400">
                         <li><a href="#" className="hover:text-neon-cyan transition-colors">Sobre Nosotros</a></li>
                         <li><a href="#" className="hover:text-neon-cyan transition-colors">Careers</a></li>
                         <li><a href="#" className="hover:text-neon-cyan transition-colors">Contacto</a></li>
+                    </ul>
+                </div>
+
+                {/* Links 3 - Legal & Soporte */}
+                <div>
+                    <h4 className="text-white font-bold mb-6">Legal & Soporte</h4>
+                    <ul className="space-y-3 text-sm text-gray-400">
+                        <li><Link to="/pqrs" className="hover:text-neon-cyan transition-colors">PQRS</Link></li>
                         <li><Link to="/politica-privacidad" className="hover:text-neon-cyan transition-colors">Política de Privacidad</Link></li>
                     </ul>
                 </div>

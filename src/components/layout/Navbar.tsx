@@ -26,7 +26,6 @@ const Navbar = ({ onOpenWizard }: NavbarProps) => {
         { name: 'Servicios', href: '/#services' },
         { name: 'Nosotros', href: '/#nosotros' },
         { name: 'Contacto', href: '/#contact' },
-        { name: 'PQRS', href: '/pqrs' },
     ];
 
     const handleNavigation = (href: string) => {
