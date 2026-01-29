@@ -1,4 +1,4 @@
-import { Helmet } from 'react-helmet-async';
+import { useEffect } from 'react';
 
 interface SEOProps {
     title: string;
@@ -14,42 +14,67 @@ const SEO = ({
     description,
     keywords,
     canonicalUrl = window.location.href,
-    image = '/og-image.jpg', // Assuming a default OG image exists or will exist
+    image = '/og-image.jpg',
     jsonLd
 }: SEOProps) => {
-    const siteTitle = 'Jhamf Group';
-    const fullTitle = `${title} | ${siteTitle}`;
 
-    return (
-        <Helmet>
-            {/* Standard Metadata */}
-            <title>{fullTitle}</title>
-            <meta name="description" content={description} />
-            {keywords && <meta name="keywords" content={keywords} />}
-            <link rel="canonical" href={canonicalUrl} />
+    useEffect(() => {
+        // 1. Update Title
+        const siteTitle = 'Jhamf Group';
+        document.title = `${title} | ${siteTitle}`;
 
-            {/* Open Graph / Facebook */}
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content={canonicalUrl} />
-            <meta property="og:title" content={fullTitle} />
-            <meta property="og:description" content={description} />
-            <meta property="og:image" content={image} />
+        // 2. Helper to update/create meta tags
+        const updateMeta = (name: string, content: string, attribute = 'name') => {
+            let element = document.querySelector(`meta[${attribute}="${name}"]`);
+            if (!element) {
+                element = document.createElement('meta');
+                element.setAttribute(attribute, name);
+                document.head.appendChild(element);
+            }
+            element.setAttribute('content', content);
+        };
 
-            {/* Twitter */}
-            <meta name="twitter:card" content="summary_large_image" />
-            <meta name="twitter:url" content={canonicalUrl} />
-            <meta name="twitter:title" content={fullTitle} />
-            <meta name="twitter:description" content={description} />
-            <meta name="twitter:image" content={image} />
+        // 3. Update Standard Meta Tags
+        updateMeta('description', description);
+        if (keywords) updateMeta('keywords', keywords);
 
-            {/* Structured Data (JSON-LD) */}
-            {jsonLd && (
-                <script type="application/ld+json">
-                    {JSON.stringify(jsonLd)}
-                </script>
-            )}
-        </Helmet>
-    );
+        // 4. Update Canonical URL
+        let linkCanonical = document.querySelector('link[rel="canonical"]');
+        if (!linkCanonical) {
+            linkCanonical = document.createElement('link');
+            linkCanonical.setAttribute('rel', 'canonical');
+            document.head.appendChild(linkCanonical);
+        }
+        linkCanonical.setAttribute('href', canonicalUrl);
+
+        // 5. Update Open Graph Tags
+        updateMeta('og:type', 'website', 'property');
+        updateMeta('og:url', canonicalUrl, 'property');
+        updateMeta('og:title', `${title} | ${siteTitle}`, 'property');
+        updateMeta('og:description', description, 'property');
+        updateMeta('og:image', image, 'property');
+
+        // Twitter
+        updateMeta('twitter:card', 'summary_large_image', 'name');
+        updateMeta('twitter:url', canonicalUrl, 'name');
+        updateMeta('twitter:title', `${title} | ${siteTitle}`, 'name');
+        updateMeta('twitter:description', description, 'name');
+        updateMeta('twitter:image', image, 'name');
+
+        // 6. JSON-LD Structured Data
+        if (jsonLd) {
+            let script = document.querySelector('script[type="application/ld+json"]');
+            if (!script) {
+                script = document.createElement('script');
+                script.setAttribute('type', 'application/ld+json');
+                document.head.appendChild(script);
+            }
+            script.innerHTML = JSON.stringify(jsonLd);
+        }
+
+    }, [title, description, keywords, canonicalUrl, image, jsonLd]);
+
+    return null; // This component renders nothing
 };
 
 export default SEO;
