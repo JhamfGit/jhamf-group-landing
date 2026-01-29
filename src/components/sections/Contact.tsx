@@ -27,10 +27,15 @@ const Contact = () => {
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <button className="px-8 py-4 bg-white text-obsidian font-bold rounded-lg hover:bg-gray-100 transition-colors flex items-center gap-2">
+                            <a
+                                href="https://wa.me/573174660498?text=Bienvenido%20a%20Jhamf%20Group%20SAS!!%20en%20que%20podemos%20asesorarte?"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-8 py-4 bg-white text-obsidian font-bold rounded-lg hover:bg-gray-100 transition-colors flex items-center gap-2"
+                            >
                                 Agendar Consultoría Gratuita
                                 <ArrowRight className="w-5 h-5" />
-                            </button>
+                            </a>
                             <button className="px-8 py-4 bg-transparent border border-white/20 text-white font-medium rounded-lg hover:bg-white/5 transition-colors">
                                 Ver Casos de Éxito
                             </button>
