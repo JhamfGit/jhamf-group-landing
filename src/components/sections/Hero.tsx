@@ -42,8 +42,8 @@ const Hero = ({ onOpenWizard }: HeroProps) => {
                     className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white mb-6 leading-tight"
                 >
                     Infraestructura <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-azure to-neon-cyan text-glow">
-                        Automatizada
+                    Cloud <span className="text-transparent bg-clip-text bg-gradient-to-r from-azure to-neon-cyan text-glow">
+                        Azure & IA
                     </span>
                 </motion.h1>
 

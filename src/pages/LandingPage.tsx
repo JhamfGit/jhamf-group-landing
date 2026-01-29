@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import SEO from '../components/seo/SEO';
 import Navbar from '../components/layout/Navbar';
 import Hero from '../components/sections/Hero';
 import AboutUs from '../components/sections/AboutUs';
@@ -12,6 +13,27 @@ const LandingPage = () => {
 
     return (
         <div className="bg-obsidian min-h-screen text-white">
+            <SEO
+                title="Consultoría Azure & Automatización IA"
+                description="Jhamf Group: Expertos en infraestructura cloud Microsoft Azure, automatización de procesos empresariales y soluciones de IA en Colombia. Transforme su negocio hoy."
+                keywords="Azure consulting Colombia, Automatización de procesos, Inteligencia artificial empresas, Outsourcing TI, Cloud Infrastructure"
+                jsonLd={{
+                    "@context": "https://schema.org",
+                    "@type": "Organization",
+                    "name": "Jhamf Group SAS",
+                    "url": "https://jhamf.com", // Assuming domain
+                    "logo": "https://jhamf.com/logo.png", // Placeholder
+                    "sameAs": [
+                        "https://www.linkedin.com/company/jhamf-group",
+                        "https://twitter.com/jhamfgroup"
+                    ],
+                    "contactPoint": {
+                        "@type": "ContactPoint",
+                        "telephone": "+57-300-123-4567", // Placeholder
+                        "contactType": "customer service"
+                    }
+                }}
+            />
             <Navbar onOpenWizard={() => setIsWizardOpen(true)} />
             <main>
                 <Hero onOpenWizard={() => setIsWizardOpen(true)} />

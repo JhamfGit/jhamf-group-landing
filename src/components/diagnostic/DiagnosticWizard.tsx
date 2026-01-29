@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronRight, Check, Sparkles, ArrowRight, RefreshCcw, Send } from 'lucide-react';
+import { X, ChevronRight, Sparkles, ArrowRight, RefreshCcw, Send } from 'lucide-react';
 import { diagnosticQuestions, getResultCategory } from '../../data/diagnosticData';
 
 interface DiagnosticWizardProps {

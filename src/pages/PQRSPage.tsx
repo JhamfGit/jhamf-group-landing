@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, Upload, Send, FileText, AlertCircle } from 'lucide-react';
 import Navbar from '../components/layout/Navbar';
+import SEO from '../components/seo/SEO';
 import emailjs from '@emailjs/browser';
 
 // ⚠️ REEMPLAZA ESTOS VALORES CON LOS TUYOS DE EMAILJS
@@ -80,7 +81,7 @@ const PQRSPage = () => {
                 service: getServicioLabel(formData.service),
                 description: formData.description,
                 referenceNumber: reference,
-                fecha: new Date().toLocaleString('es-CO', { 
+                fecha: new Date().toLocaleString('es-CO', {
                     timeZone: 'America/Bogota',
                     year: 'numeric',
                     month: 'long',
@@ -113,6 +114,11 @@ const PQRSPage = () => {
 
     return (
         <div className="bg-obsidian min-h-screen text-white font-sans">
+            <SEO
+                title="Radicar PQRS - Jhamf Group"
+                description="Canal oficial para radicar Peticiones, Quejas, Reclamos y Sugerencias (PQRS) de Jhamf Group SAS. Estamos comprometidos con la mejora continua."
+                keywords="PQRS, Servicio al cliente Jhamf, Peticiones Quejas Reclamos, Soporte Jhamf Group"
+            />
             <Navbar onOpenWizard={() => { }} />
 
             <div className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">

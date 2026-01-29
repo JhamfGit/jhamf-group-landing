@@ -2,10 +2,16 @@ import { motion } from 'framer-motion';
 import { Download, FileText } from 'lucide-react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
+import SEO from '../components/seo/SEO';
 
 const PrivacyPolicyPage = () => {
     return (
         <div className="bg-obsidian min-h-screen text-white font-sans flex flex-col">
+            <SEO
+                title="Política de Privacidad y Tratamiento de Datos"
+                description="Conozca nuestra política de privacidad y tratamiento de datos personales. En Jhamf Group SAS protegemos su información conforme a la ley."
+                keywords="Política de privacidad, Tratamiento de datos Jhamf, Protección de datos personales Colombia"
+            />
             <Navbar onOpenWizard={() => { }} />
 
             <main className="flex-grow pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto w-full">
