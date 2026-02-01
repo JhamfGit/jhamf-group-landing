@@ -1,4 +1,4 @@
-import { Twitter, Linkedin, Mail } from 'lucide-react';
+import { Instagram, Linkedin, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
@@ -54,9 +54,9 @@ const Footer = () => {
             <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 text-sm text-gray-500 pb-8">
                 <p>&copy; {new Date().getFullYear()} Jhamf Group SAS. Todos los derechos reservados.</p>
                 <div className="flex items-center gap-6 mt-4 md:mt-0">
-                    <a href="#" className="hover:text-white transition-colors"><Twitter className="w-5 h-5" /></a>
-                    <a href="#" className="hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></a>
-                    <a href="#" className="hover:text-white transition-colors"><Mail className="w-5 h-5" /></a>
+                    <a href="https://www.instagram.com/jhamfgroup/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors"><Instagram className="w-5 h-5" /></a>
+                    <a href="https://www.linkedin.com/company/jhamf-group" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></a>
+                    <a href="mailto:proyectos@jhamf.com" className="hover:text-white transition-colors"><Mail className="w-5 h-5" /></a>
                 </div>
             </div>
         </footer>
