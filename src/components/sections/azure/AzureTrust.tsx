@@ -18,7 +18,7 @@ const AzureTrust: React.FC = () => {
                 <div className="flex flex-wrap justify-center gap-8 md:gap-16">
                     <LogoPlaceholder text="Microsoft Partner" />
                     <LogoPlaceholder text="Azure Certified" />
-                    <LogoPlaceholder text="ISO 27001" />
+
                     <LogoPlaceholder text="Databricks" />
                     <LogoPlaceholder text="GitHub Enterprise" />
                 </div>
