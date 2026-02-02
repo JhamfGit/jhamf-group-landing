@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
 import { Database, Cpu, ArrowRight, Layers } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Evolution = () => {
+    const navigate = useNavigate();
+
     return (
         <section id="evolution" className="relative py-24 bg-obsidian overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,7 +43,8 @@ const Evolution = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="group relative p-8 rounded-2xl border border-white/5 bg-gradient-to-br from-white/5 to-transparent hover:border-azure/30 transition-all duration-500"
+                        onClick={() => { navigate('/azure'); window.scrollTo(0, 0); }}
+                        className="group relative p-8 rounded-2xl border border-white/5 bg-gradient-to-br from-white/5 to-transparent hover:border-azure/30 transition-all duration-500 cursor-pointer"
                     >
                         <div className="absolute inset-0 bg-azure/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
                         <div className="relative z-10">

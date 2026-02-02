@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Server, Shield, Headphones, Monitor, ArrowRight, CheckCircle2, Cloud, BrainCircuit } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const services = [
     {
@@ -10,6 +11,7 @@ const services = [
         description: "Soluciones de nube híbrida y multi-cloud escalables, seguras y optimizadas para su negocio.",
         gradient: "from-azure/20 to-transparent",
         border: "group-hover:border-azure/50",
+        link: "/azure",
         items: [
             "Microsoft Azure Partners",
             "Arquitectura Híbrida & Multi-cloud",
@@ -92,6 +94,7 @@ const services = [
 const Services = () => {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     const [isHighlighted, setIsHighlighted] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleHighlight = () => {
@@ -102,6 +105,13 @@ const Services = () => {
         window.addEventListener('highlight-services', handleHighlight);
         return () => window.removeEventListener('highlight-services', handleHighlight);
     }, []);
+
+    const handleCardClick = (link?: string) => {
+        if (link) {
+            navigate(link);
+            window.scrollTo(0, 0);
+        }
+    };
 
     return (
         <section
@@ -145,7 +155,8 @@ const Services = () => {
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             onMouseEnter={() => setHoveredIndex(index)}
                             onMouseLeave={() => setHoveredIndex(null)}
-                            className={`group relative p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm transition-all duration-300 ${service.border} h-full flex flex-col`}
+                            onClick={() => handleCardClick(service.link)}
+                            className={`group relative p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-sm transition-all duration-300 ${service.border} h-full flex flex-col ${service.link ? 'cursor-pointer hover:bg-white/10' : ''}`}
                         >
                             {/* Hover Gradient */}
                             <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none`} />
