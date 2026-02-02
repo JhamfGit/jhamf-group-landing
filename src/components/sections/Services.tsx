@@ -26,6 +26,7 @@ const services = [
         description: "Impulse la eficiencia operativa con agentes cognitivos y automatización inteligente de procesos.",
         gradient: "from-neon-purple/20 to-transparent",
         border: "group-hover:border-neon-purple/50",
+        link: "/automatizacion-ia",
         items: [
             "Automatización de Procesos (RPA)",
             "Agentes Cognitivos & Chatbots",

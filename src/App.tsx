@@ -3,6 +3,7 @@ import LandingPage from './pages/LandingPage';
 import PQRSPage from './pages/PQRSPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import AzurePage from './pages/AzurePage';
+import AutomationPage from './pages/AutomationPage';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/azure" element={<AzurePage />} />
+        <Route path="/automatizacion-ia" element={<AutomationPage />} />
         <Route path="/pqrs" element={<PQRSPage />} />
         <Route path="/politica-privacidad" element={<PrivacyPolicyPage />} />
       </Routes>

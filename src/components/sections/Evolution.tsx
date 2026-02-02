@@ -72,7 +72,8 @@ const Evolution = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="group relative p-8 rounded-2xl border border-white/5 bg-gradient-to-br from-white/5 to-transparent hover:border-neon-cyan/30 transition-all duration-500"
+                        onClick={() => { navigate('/automatizacion-ia'); window.scrollTo(0, 0); }}
+                        className="group relative p-8 rounded-2xl border border-white/5 bg-gradient-to-br from-white/5 to-transparent hover:border-neon-cyan/30 transition-all duration-500 cursor-pointer"
                     >
                         <div className="absolute inset-0 bg-neon-cyan/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
                         <div className="relative z-10">

@@ -22,7 +22,7 @@ const AzureContact: React.FC = () => {
                         <div className="space-y-6">
                             <h3 className="text-xl font-semibold text-white mb-4">Contacto Directo</h3>
 
-                            <a href="https://wa.me/573001234567" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group">
+                            <a href="https://wa.me/573174660498" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group">
                                 <div className="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center group-hover:bg-green-500/20">
                                     <MessageSquare className="w-5 h-5 text-green-500" />
                                 </div>
@@ -36,11 +36,11 @@ const AzureContact: React.FC = () => {
                                 <span>proyectos@jhamf.com</span>
                             </a>
 
-                            <a href="tel:+576021234567" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group">
+                            <a href="tel:+573174660498" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors group">
                                 <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10">
                                     <Phone className="w-5 h-5 text-white" />
                                 </div>
-                                <span>+57 (602) 123 4567 (Cali)</span>
+                                <span>+57 317 466 0498</span>
                             </a>
                         </div>
 
