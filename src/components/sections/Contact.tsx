@@ -28,7 +28,7 @@ const Contact = () => {
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                             <a
-                                href="https://wa.me/573174660498?text=Bienvenido%20a%20Jhamf%20Group%20SAS!!%20en%20que%20podemos%20asesorarte?"
+                                href="https://form.typeform.com/to/gxR8JkE0"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="px-8 py-4 bg-white text-obsidian font-bold rounded-lg hover:bg-gray-100 transition-colors flex items-center gap-2"

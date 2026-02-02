@@ -55,7 +55,9 @@ const AzureHero: React.FC = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <a
-              href="#contact"
+              href="https://form.typeform.com/to/gxR8JkE0"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative px-8 py-4 bg-azure-DEFAULT text-white rounded-lg font-medium overflow-hidden transition-all hover:bg-azure-glow hover:scale-105"
             >
               <span className="relative z-10 flex items-center gap-2">

@@ -68,10 +68,15 @@ const AzureContact: React.FC = () => {
                                 </select>
                             </div>
 
-                            <button className="w-full bg-azure-DEFAULT hover:bg-azure-glow text-white font-medium py-3 rounded-lg transition-all flex items-center justify-center gap-2 group">
+                            <a
+                                href="https://form.typeform.com/to/gxR8JkE0"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full bg-azure-DEFAULT hover:bg-azure-glow text-white font-medium py-3 rounded-lg transition-all flex items-center justify-center gap-2 group"
+                            >
                                 Solicitar Asesoría
                                 <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                            </button>
+                            </a>
                         </form>
                     </div>
                 </div>

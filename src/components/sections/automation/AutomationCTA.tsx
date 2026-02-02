@@ -53,10 +53,15 @@ const AutomationCTA: React.FC = () => {
                                 className="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-gray-500 focus:outline-none focus:border-neon-purple transition-colors resize-none"
                             ></textarea>
 
-                            <button className="w-full bg-gradient-to-r from-neon-purple to-neon-purple/80 hover:from-neon-cyan hover:to-neon-cyan/80 text-white font-bold py-4 rounded-xl transition-all shadow-[0_0_20px_rgba(123,44,191,0.3)] hover:shadow-[0_0_30px_rgba(0,240,255,0.4)] flex items-center justify-center gap-2">
+                            <a
+                                href="https://form.typeform.com/to/gxR8JkE0"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full bg-gradient-to-r from-neon-purple to-neon-purple/80 hover:from-neon-cyan hover:to-neon-cyan/80 text-white font-bold py-4 rounded-xl transition-all shadow-[0_0_20px_rgba(123,44,191,0.3)] hover:shadow-[0_0_30px_rgba(0,240,255,0.4)] flex items-center justify-center gap-2"
+                            >
                                 Solicitar Asesoría IA
                                 <Send className="w-4 h-4" />
-                            </button>
+                            </a>
                             <p className="text-xs text-center text-gray-500 mt-4">
                                 Tus datos están seguros. Política de Privacidad.
                             </p>
