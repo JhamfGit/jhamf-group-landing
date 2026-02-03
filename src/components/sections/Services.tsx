@@ -59,21 +59,22 @@ const services = [
             "Diseño y administración de infraestructura TI",
             "Redes de voz y datos",
             "Servidores, Nube y entornos híbridos",
-            "Cableado estructurado y conectividad"
+            "Cableado estructurado y conectividad",
+            "Sistemas de videovigilancia CCTV"
         ]
     },
     {
         icon: <Shield className="w-8 h-8 text-neon-purple" />,
-        title: "Security",
-        subtitle: "& Surveillance",
+        title: "Ciberseguridad",
+        subtitle: "& Auditoría",
         description: "Protección avanzada para sus activos digitales y físicos con tecnología de vanguardia.",
         gradient: "from-neon-purple/20 to-transparent",
         border: "group-hover:border-neon-purple/50",
         items: [
             "Ciberseguridad y seguridad de la información",
-            "Sistemas de videovigilancia CCTV",
             "Control de acceso y monitoreo",
-            "Prevención de riesgos y respuesta a incidentes"
+            "Prevención de riesgos y respuesta a incidentes",
+            "Auditorías de Ciberseguridad"
         ]
     },
     {
