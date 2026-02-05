@@ -1,10 +1,9 @@
-import { useRef } from 'react';
 import { BlueprintProvider } from '../components/blueprint/context/BlueprintContext';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import SEO from '../components/seo/SEO';
 import Hero from '../components/blueprint/Hero';
-import ContextSelector from '../components/blueprint/ContextSelector';
+import BlueprintIntro from '../components/blueprint/BlueprintIntro';
 import ArchitectureSection from '../components/blueprint/ArchitectureSection';
 import MultitenantSection from '../components/blueprint/MultitenantSection';
 import AutomationDemo from '../components/blueprint/demos/AutomationDemo';
@@ -12,10 +11,11 @@ import Results from '../components/blueprint/Results';
 import CTA from '../components/blueprint/CTA';
 
 const BlueprintPageContent = () => {
-    const demoRef = useRef<HTMLDivElement>(null);
-
     const handleStartDemo = () => {
-        demoRef.current?.scrollIntoView({ behavior: 'smooth' });
+        // Simple scroll to intro if needed, or remove completely if hero button logic changes.
+        // For now, let's target the unified blueprint section roughly.
+        const section = document.querySelector('main');
+        section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
     return (
@@ -30,12 +30,11 @@ const BlueprintPageContent = () => {
             <main className="relative">
                 <Hero onStartDemo={handleStartDemo} />
 
-                <div ref={demoRef}>
-                    <ContextSelector />
-                </div>
+                <BlueprintIntro />
+
+                <MultitenantSection />
 
                 <ArchitectureSection />
-                <MultitenantSection />
                 <AutomationDemo />
                 <Results />
                 <CTA />

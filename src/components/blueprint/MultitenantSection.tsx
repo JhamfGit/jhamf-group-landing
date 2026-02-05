@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 
 const MultitenantSection = () => {
     return (
-        <section className="py-16 bg-gradient-to-b from-black to-obsidian border-t border-white/5 overflow-hidden">
+        <section className="py-12 bg-gradient-to-b from-black to-obsidian border-t border-white/5 overflow-hidden">
             <div className="container mx-auto px-4">
                 {/* Unified Compact Container */}
-                <div className="max-w-5xl mx-auto bg-white/5 border border-white/10 rounded-3xl overflow-hidden relative">
+                <div className="max-w-7xl mx-auto bg-white/5 border border-white/10 rounded-3xl overflow-hidden relative">
                     {/* Background Glow */}
                     <div className="absolute top-0 right-0 w-96 h-96 bg-neon-cyan/5 rounded-full blur-[100px] -z-10" />
 

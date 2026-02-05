@@ -9,8 +9,33 @@ const personas: { id: PersonaType; label: string; icon: string }[] = [
     { id: 'management', label: 'Dirección', icon: '📈' },
 ];
 
-const ContextSelector = () => {
+const ContextSelector = ({ embedded }: { embedded?: boolean }) => {
     const { activePersona, setPersona } = useBlueprint();
+
+    if (embedded) {
+        return (
+            <div className="flex flex-wrap justify-center gap-2">
+                {personas.map((persona) => (
+                    <button
+                        key={persona.id}
+                        onClick={() => setPersona(persona.id)}
+                        className={`relative px-4 py-2 rounded-lg border text-sm transition-all duration-300 ${activePersona === persona.id
+                            ? 'bg-neon-lime/10 border-neon-lime text-neon-lime shadow-[0_0_10px_rgba(204,255,0,0.2)]'
+                            : 'bg-white/5 border-white/10 text-gray-400 hover:bg-white/10 hover:border-white/20'
+                            }`}
+                    >
+                        <div className="flex items-center gap-2">
+                            <span>{persona.icon}</span>
+                            <span className="font-bold">{persona.label}</span>
+                        </div>
+                        {activePersona === persona.id && (
+                            <div className="absolute inset-0 rounded-lg bg-neon-lime/5 -z-10" />
+                        )}
+                    </button>
+                ))}
+            </div>
+        );
+    }
 
     return (
         <section className="py-10 border-b border-white/5 bg-obsidian/50 backdrop-blur-sm sticky top-20 z-40">
