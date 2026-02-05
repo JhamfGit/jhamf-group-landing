@@ -4,6 +4,7 @@ import PQRSPage from './pages/PQRSPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import AzurePage from './pages/AzurePage';
 import AutomationPage from './pages/AutomationPage';
+import BlueprintPage from './pages/BlueprintPage';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/automatizacion-ia" element={<AutomationPage />} />
         <Route path="/pqrs" element={<PQRSPage />} />
         <Route path="/politica-privacidad" element={<PrivacyPolicyPage />} />
+        <Route path="/blueprint" element={<BlueprintPage />} />
       </Routes>
     </Router>
   );

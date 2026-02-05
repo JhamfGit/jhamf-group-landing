@@ -13,6 +13,7 @@ export default {
         },
         neon: {
           cyan: '#00F0FF',
+          lime: '#CCFF00',
           purple: '#7B2CBF',
         },
         obsidian: '#050510',
