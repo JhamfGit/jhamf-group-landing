@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import {
     Mail, FileText, Globe, Webhook,
-    Workflow, Network,
+    Share2, GitMerge,
     BrainCircuit,
     Database, Server, Send, MessageSquare
 } from 'lucide-react';
@@ -82,14 +82,14 @@ const ArchitectureSection = () => {
                             <LayerLabel label="ORCHESTRATION" color="text-neon-cyan" />
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 relative">
                                 <TechBlock
-                                    icon={Workflow}
+                                    icon={GitMerge}
                                     title="n8n"
                                     subtitle="Flujos Flexibles"
                                     color="border-neon-lime/50 bg-neon-lime/5"
                                     active
                                 />
                                 <TechBlock
-                                    icon={Network}
+                                    icon={Share2}
                                     title="Azure Logic Apps"
                                     subtitle="Enterprise Core"
                                     color="border-blue-500/50 bg-blue-500/5"
@@ -131,8 +131,8 @@ const ArchitectureSection = () => {
 
                         {/* Floating Tool Cards (Legend) */}
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
-                            <ToolLegend icon={Workflow} label="n8n Orchestration" />
-                            <ToolLegend icon={Network} label="Logic Apps" />
+                            <ToolLegend icon={GitMerge} label="n8n Orchestration" />
+                            <ToolLegend icon={Share2} label="Logic Apps" />
                             <ToolLegend icon={BrainCircuit} label="Cognitive Services" />
                         </div>
                     </div>
