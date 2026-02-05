@@ -5,8 +5,7 @@ import Footer from '../components/layout/Footer';
 import SEO from '../components/seo/SEO';
 import Hero from '../components/blueprint/Hero';
 import ContextSelector from '../components/blueprint/ContextSelector';
-import ProcessDiagram from '../components/blueprint/ProcessDiagram';
-import ToolsSection from '../components/blueprint/ToolsSection';
+import ArchitectureSection from '../components/blueprint/ArchitectureSection';
 import MultitenantSection from '../components/blueprint/MultitenantSection';
 import AutomationDemo from '../components/blueprint/demos/AutomationDemo';
 import Results from '../components/blueprint/Results';
@@ -35,8 +34,7 @@ const BlueprintPageContent = () => {
                     <ContextSelector />
                 </div>
 
-                <ProcessDiagram />
-                <ToolsSection />
+                <ArchitectureSection />
                 <MultitenantSection />
                 <AutomationDemo />
                 <Results />
