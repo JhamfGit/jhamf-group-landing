@@ -6,7 +6,24 @@ import {
     Database, Server, Send, MessageSquare
 } from 'lucide-react';
 
+import { useBlueprint } from './context/BlueprintContext';
+
 const ArchitectureSection = () => {
+    const { activePersona } = useBlueprint();
+
+    // Configuration for active nodes based on persona
+    const activeNodes: any = {
+        sales: { inputs: ['Web Forms', 'Email'], actions: ['CRM', 'WhatsApp', 'Email'] },
+        ops: { inputs: ['Docs', 'Email'], actions: ['ERP', 'Database'] },
+        support: { inputs: ['Webhooks', 'Email'], actions: ['Server', 'Email'] },
+        management: { inputs: ['Docs', 'Webhooks'], actions: ['Database', 'Server'] },
+    };
+
+    const currentActive = activeNodes[activePersona] || { inputs: [], actions: [] };
+
+    const isNodeActive = (label: string, type: 'inputs' | 'actions') =>
+        currentActive[type].includes(label);
+
     return (
         <section className="py-24 bg-obsidian text-white relative overflow-hidden">
             {/* Background Tech Mesh */}
@@ -70,10 +87,10 @@ const ArchitectureSection = () => {
                             {/* Layer 1: Inputs */}
                             <LayerLabel label="INPUTS" />
                             <div className="grid grid-cols-4 gap-4 mb-12">
-                                <InputCard icon={Globe} label="Web Forms" />
-                                <InputCard icon={Mail} label="Email" />
-                                <InputCard icon={Webhook} label="Webhooks" />
-                                <InputCard icon={FileText} label="Docs" />
+                                <InputCard icon={Globe} label="Web Forms" active={isNodeActive('Web Forms', 'inputs')} />
+                                <InputCard icon={Mail} label="Email" active={isNodeActive('Email', 'inputs')} />
+                                <InputCard icon={Webhook} label="Webhooks" active={isNodeActive('Webhooks', 'inputs')} />
+                                <InputCard icon={FileText} label="Docs" active={isNodeActive('Docs', 'inputs')} />
                             </div>
 
                             <ConnectorLine />
@@ -121,10 +138,10 @@ const ArchitectureSection = () => {
                             {/* Layer 4: Actions */}
                             <LayerLabel label="ACTIONS" />
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                <ActionCard icon={Server} label="CRM" />
-                                <ActionCard icon={Database} label="ERP" />
-                                <ActionCard icon={MessageSquare} label="WhatsApp" />
-                                <ActionCard icon={Send} label="Email" />
+                                <ActionCard icon={Server} label="CRM" active={isNodeActive('CRM', 'actions')} />
+                                <ActionCard icon={Database} label="ERP" active={isNodeActive('ERP', 'actions')} />
+                                <ActionCard icon={MessageSquare} label="WhatsApp" active={isNodeActive('WhatsApp', 'actions')} />
+                                <ActionCard icon={Send} label="Email" active={isNodeActive('Email', 'actions')} />
                             </div>
 
                         </div>
@@ -148,10 +165,14 @@ const LayerLabel = ({ label, color = "text-gray-500" }: { label: string, color?:
     <div className={`text-xs font-mono tracking-[0.2em] mb-4 ${color} font-bold`}>{label}</div>
 );
 
-const InputCard = ({ icon: Icon, label }: any) => (
-    <div className="bg-white/5 border border-white/10 p-4 rounded-xl flex flex-col items-center gap-2 hover:bg-white/10 transition-colors">
-        <Icon className="w-5 h-5 text-gray-400" />
-        <span className="text-xs text-gray-400 font-medium">{label}</span>
+const InputCard = ({ icon: Icon, label, active }: any) => (
+    <div className={`border p-4 rounded-xl flex flex-col items-center gap-2 transition-all duration-500 ${active
+        ? 'bg-neon-cyan/10 border-neon-cyan/50 shadow-[0_0_15px_rgba(0,240,255,0.2)] scale-105'
+        : 'bg-white/5 border-white/10 opacity-50'
+        }`}>
+        <Icon className={`w-5 h-5 ${active ? 'text-neon-cyan' : 'text-gray-400'}`} />
+        <span className={`text-xs font-medium ${active ? 'text-white' : 'text-gray-400'}`}>{label}</span>
+        {active && <div className="w-1.5 h-1.5 rounded-full bg-neon-cyan animate-pulse mt-1" />}
     </div>
 );
 
@@ -178,10 +199,13 @@ const Badge = ({ children }: any) => (
     </span>
 );
 
-const ActionCard = ({ icon: Icon, label }: any) => (
-    <div className="bg-white/5 border border-white/10 p-4 rounded-xl flex items-center justify-between hover:border-neon-cyan/50 transition-colors group">
-        <span className="text-sm font-medium text-gray-300">{label}</span>
-        <Icon className="w-4 h-4 text-gray-500 group-hover:text-neon-cyan transition-colors" />
+const ActionCard = ({ icon: Icon, label, active }: any) => (
+    <div className={`border p-4 rounded-xl flex items-center justify-between transition-all duration-500 ${active
+        ? 'bg-neon-lime/10 border-neon-lime/50 shadow-[0_0_15px_rgba(204,255,0,0.2)] scale-105'
+        : 'bg-white/5 border-white/10 opacity-50'
+        }`}>
+        <span className={`text-sm font-medium ${active ? 'text-white' : 'text-gray-300'}`}>{label}</span>
+        <Icon className={`w-4 h-4 ${active ? 'text-neon-lime' : 'text-gray-500'}`} />
     </div>
 );
 
