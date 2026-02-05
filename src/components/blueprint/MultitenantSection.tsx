@@ -1,4 +1,4 @@
-import { Shield, Lock, Layers, LayoutGrid, CheckCircle2 } from 'lucide-react';
+import { Shield, Lock, Layers, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const MultitenantSection = () => {
